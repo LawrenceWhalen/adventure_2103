@@ -29,4 +29,5 @@ RSpec.describe 'Park' do
       expect(park1.trails).to eq([trail1, trail2])
     end
   end
+  # trail3 = Trail.new({name: 'Tower Bridge', length: '3.0 miles', level: :moderate})
 end

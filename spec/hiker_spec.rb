@@ -1,4 +1,5 @@
 require './lib/hiker'
+require './lib/park'
 
 RSpec.describe 'Hiker' do
   describe '#initialize' do
@@ -13,6 +14,7 @@ RSpec.describe 'Hiker' do
       expect(hiker1.name).to eq('Dora')
       expect(hiker1.experience_level).to eq(:moderate)
       expect(hiker1.snacks).to eq({})
+      expect(hiker1.parks_visited).to eq([])
     end
   end
   describe '#pack' do
@@ -20,13 +22,26 @@ RSpec.describe 'Hiker' do
       hiker1 = Hiker.new('Dora', :moderate)
 
       hiker1.pack('water', 1)
-      hiker1.pack('trial mix', 3)
+      hiker1.pack('trail mix', 3)
 
       expect(hiker1.snacks).to eq({'water' => 1, 'trail mix' => 3})
 
-      hiker.pack('water', 1)
+      hiker1.pack('water', 1)
 
       expect(hiker1.snacks).to eq({'water' => 2, 'trail mix' => 3})
     end
+  end
+  describe '#visit' do
+    hiker1 = Hiker.new('Dora', :moderate)
+    park1 = Park.new('Capitol Reef')
+    park2 = Park.new('Bryce Canyon')
+
+    hiker1.visit(park1)
+
+    expect(hiker1.parks_visited).to eq([park1])
+
+    hiker.visit(park2)
+
+    expect(hiker1.parks_visited).to eq([park1, park2])
   end
 end
