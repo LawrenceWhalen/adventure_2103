@@ -17,6 +17,7 @@ RSpec.describe 'Hiker' do
       expect(hiker1.parks_visited).to eq([])
     end
   end
+
   describe '#pack' do
     it 'adds a snack name as a key and snack amount as a value' do
       hiker1 = Hiker.new('Dora', :moderate)
@@ -31,6 +32,7 @@ RSpec.describe 'Hiker' do
       expect(hiker1.snacks).to eq({'water' => 2, 'trail mix' => 3})
     end
   end
+  
   describe '#visit' do
     it 'adds a park to parks_visited' do
       hiker1 = Hiker.new('Dora', :moderate)

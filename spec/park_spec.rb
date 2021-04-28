@@ -14,6 +14,7 @@ RSpec.describe 'Park' do
       expect(park1.trails).to eq([])
     end
   end
+
   describe '#add_trail' do
     it 'adds a trail instace to the trails array' do
       park1 = Park.new('Capitol Reef')
@@ -29,6 +30,7 @@ RSpec.describe 'Park' do
       expect(park1.trails).to eq([trail1, trail2])
     end
   end
+
   describe '#trails_shorter_than' do
     it 'returns a list of all a parks trails shorter than the milage' do
       park1 = Park.new('Capitol Reef')
@@ -57,6 +59,7 @@ RSpec.describe 'Park' do
       expect(park2.trails_shorter_than(2.5)).to eq([])
     end
   end
+
   describe '#hikeable_miles' do
     it 'returns the sum of all trail miles' do
       park1 = Park.new('Capitol Reef')
@@ -81,8 +84,26 @@ RSpec.describe 'Park' do
       park2.add_trail(trail5)
       park2.add_trail(trail6)
 
-      expect(park1.hikeable_miles).to eq(7.5)
+      expect(park1.hikeable_miles).to eq(6.9)
       expect(park2.hikeable_miles).to eq(16.9)
+    end
+  end
+
+  describe '#trails_of_level' do
+    it 'returns all trails of the given level in the park' do
+      park1 = Park.new('Capitol Reef')
+      trail1 = double('trail')
+      allow(trail1).to receive(:level) { :easy }
+      trail2 = double('trail')
+      allow(trail2).to receive(:level) { :moderate }
+      trail3 = double('trail')
+      allow(trail3).to receive(:level) { :moderate }
+
+      park1.add_trail(trail1)
+      park1.add_trail(trail2)
+      park1.add_trail(trail3)
+
+      expect(park1.trails_of_level(:moderate)).to eq([trail2, trail3])
     end
   end
 end
