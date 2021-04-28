@@ -34,8 +34,8 @@ RSpec.describe 'Hiker' do
   describe '#visit' do
     it 'adds a park to parks_visited' do
       hiker1 = Hiker.new('Dora', :moderate)
-      park1 = Park.new('Capitol Reef')
-      park2 = Park.new('Bryce Canyon')
+      park1 = double('park')
+      park2 = double('park')
 
       hiker1.visit(park1)
 
