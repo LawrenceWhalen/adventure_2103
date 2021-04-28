@@ -28,4 +28,10 @@ class Hiker
       park.trails_of_level(@experience_level)
     end
   end
+
+  def favorite_snack
+    @snacks.to_a.max_by do |_name, amount|
+      amount
+    end[0]
+  end
 end
