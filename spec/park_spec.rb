@@ -26,7 +26,7 @@ RSpec.describe 'Park' do
 
       park1.add_trail(trail2)
 
-      expect(park1.trails).to eq([trail1, trial2])
+      expect(park1.trails).to eq([trail1, trail2])
     end
   end
 end
