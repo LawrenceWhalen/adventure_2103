@@ -7,5 +7,11 @@ RSpec.describe 'Hiker' do
 
       expect(hiker1.class).to eq(Hiker)
     end
+    it 'contains all passed attributes' do
+      hiker1 = Hiker.new('Dora', :moderate)
+
+      expect(hiker1.name).to eq('Dora')
+      expect(hiker1.experience_level).to eq(:moderate)
+    end
   end
 end
