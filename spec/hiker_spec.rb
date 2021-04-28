@@ -54,6 +54,10 @@ RSpec.describe 'Hiker' do
       hiker1 = Hiker.new('Dora', :moderate)
       park1 = double('park')
       park2 = double('park')
+      trail2 = double('trail')
+      trail3 = double('trail')
+      trail4 = double('trail')
+      trail6 = double('trail')
       allow(park1).to receive(:trails_of_level) { [trail2, trail3] }
       allow(park2).to receive(:trails_of_level) { [trail4, trail6] }
 
