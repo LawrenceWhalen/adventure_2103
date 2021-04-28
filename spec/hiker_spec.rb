@@ -32,16 +32,18 @@ RSpec.describe 'Hiker' do
     end
   end
   describe '#visit' do
-    hiker1 = Hiker.new('Dora', :moderate)
-    park1 = Park.new('Capitol Reef')
-    park2 = Park.new('Bryce Canyon')
+    it 'adds a park to parks_visited' do
+      hiker1 = Hiker.new('Dora', :moderate)
+      park1 = Park.new('Capitol Reef')
+      park2 = Park.new('Bryce Canyon')
 
-    hiker1.visit(park1)
+      hiker1.visit(park1)
 
-    expect(hiker1.parks_visited).to eq([park1])
+      expect(hiker1.parks_visited).to eq([park1])
 
-    hiker.visit(park2)
+      hiker1.visit(park2)
 
-    expect(hiker1.parks_visited).to eq([park1, park2])
+      expect(hiker1.parks_visited).to eq([park1, park2])
+    end
   end
 end
