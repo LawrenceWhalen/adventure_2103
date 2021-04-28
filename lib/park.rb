@@ -28,4 +28,14 @@ class Park
       trail.level == level
     end
   end
+
+  def trails_by_level
+    @trails.each_with_object({}) do |trail, hash|
+      if hash[trail.level].nil?
+        hash[trail.level] = [trail.name]
+      else
+        hash[trail.level].push(trail.name)
+      end
+    end
+  end
 end

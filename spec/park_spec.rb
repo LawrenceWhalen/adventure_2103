@@ -116,19 +116,19 @@ RSpec.describe 'Park' do
         allow(trail1).to receive(:name) { 'Grand Wash' }
       trail2 = double('trail')
         allow(trail2).to receive(:level) { :moderate }
-        allow(trail1).to receive(:name) { 'Cohab Canyon' }
+        allow(trail2).to receive(:name) { 'Cohab Canyon' }
       trail3 = double('trail')
         allow(trail3).to receive(:level) { :strenuous }
-        allow(trail1).to receive(:name) { 'Tower Bridge' }
+        allow(trail3).to receive(:name) { 'Chimney Rock Loop' }
       trail4 = double('trail')
-        allow(trail1).to receive(:level) { :moderate }
-        allow(trail1).to receive(:name) { "Queen's/Navajo Loop" }
+        allow(trail4).to receive(:level) { :moderate }
+        allow(trail4).to receive(:name) { "Queen's/Navajo Loop" }
       trail5 = double('trail')
-        allow(trail2).to receive(:level) { :easy }
-        allow(trail1).to receive(:name) { 'Rim Trail' }
+        allow(trail5).to receive(:level) { :easy }
+        allow(trail5).to receive(:name) { 'Rim Trail' }
       trail6 = double('trail')
-        allow(trail3).to receive(:level) { :moderate }
-        allow(trail1).to receive(:name) { 'Tower Bridge' }
+        allow(trail6).to receive(:level) { :moderate }
+        allow(trail6).to receive(:name) { 'Tower Bridge' }
 
       park1.add_trail(trail1)
       park1.add_trail(trail2)
@@ -142,13 +142,16 @@ RSpec.describe 'Park' do
         :moderate => ["Cohab Canyon"],
         :strenuous => ["Chimney Rock Loop"]
       }
+      actual1 = park1.trails_by_level
+
       expected2 = {
         :moderate => ["Queen's/Navajo Loop", "Tower Bridge"],
         :easy => ["Rim Trail"]
       }
+      actual2 = park2.trails_by_level
 
-      expect(park1. trails_by_level).to equal(expected1)
-      expect(park2. trails_by_level).to equal(expected2)
+      expect(actual1).to eq(expected1)
+      expect(actual2).to eq(expected2)
     end
   end
 end
