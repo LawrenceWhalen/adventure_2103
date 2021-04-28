@@ -22,4 +22,10 @@ class Park
       trail.float_length
     end
   end
+
+  def trails_of_level(level)
+    @trails.find_all do |trail|
+      trail.level == level
+    end
+  end
 end

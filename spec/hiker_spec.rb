@@ -32,7 +32,7 @@ RSpec.describe 'Hiker' do
       expect(hiker1.snacks).to eq({'water' => 2, 'trail mix' => 3})
     end
   end
-  
+
   describe '#visit' do
     it 'adds a park to parks_visited' do
       hiker1 = Hiker.new('Dora', :moderate)
@@ -46,6 +46,21 @@ RSpec.describe 'Hiker' do
       hiker1.visit(park2)
 
       expect(hiker1.parks_visited).to eq([park1, park2])
+    end
+  end
+
+  describe 'possible_trails' do
+    it 'returns all trails from parks visited that match thier level' do
+      hiker1 = Hiker.new('Dora', :moderate)
+      park1 = double('park')
+      park2 = double('park')
+      allow(park1).to receive(:trails_of_level) { [trail2, trail3] }
+      allow(park2).to receive(:trails_of_level) { [trail4, trail6] }
+
+      hiker1.visit(park1)
+      hiker1.visit(park2)
+
+      expect(hiker1.possible_trails).to eq([trail2, trail3, trail4, trail6])
     end
   end
 end
