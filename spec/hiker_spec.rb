@@ -49,7 +49,7 @@ RSpec.describe 'Hiker' do
     end
   end
 
-  describe 'possible_trails' do
+  describe '#possible_trails' do
     it 'returns all trails from parks visited that match thier level' do
       hiker1 = Hiker.new('Dora', :moderate)
       park1 = double('park')
@@ -65,6 +65,18 @@ RSpec.describe 'Hiker' do
       hiker1.visit(park2)
 
       expect(hiker1.possible_trails).to eq([trail2, trail3, trail4, trail6])
+    end
+  end
+
+  describe '#favorite_snack' do
+    it 'returns the snack the hiker has the most of' do
+      hiker1 = Hiker.new('Dora', :moderate)
+      hiker1.pack('water', 2)
+      hiker1.pack('trail mix', 1)
+      hiker1.pack('apple', 4)
+      hiker1.pack('carrot', 3)
+
+      expect(hiker1.favorite_snack).to eq('apple')
     end
   end
 end
