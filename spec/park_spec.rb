@@ -34,29 +34,17 @@ RSpec.describe 'Park' do
       park1 = Park.new('Capitol Reef')
       park2 = Park.new('Bryce Canyon')
       trail1 = double('trail')
-      allow(trail1).to receive(:length) do
-        '2.2 miles'
-      end
-      trail2 = double('trial')
-      allow(trail1).to receive(:length) do
-        '1.7 miles'
-      end
+      allow(trail1).to receive(:float_length) { 2.2 }
+      trail2 = double('trail')
+      allow(trail2).to receive(:float_length) { 1.7 }
       trail3 = double('trail')
-      allow(trail1).to receive(:length) do
-        '3.0 miles'
-      end
+      allow(trail3).to receive(:float_length) { 3.0 }
       trail4 = double('trail')
-      allow(trail1).to receive(:length) do
-        '2.9 miles'
-      end
+      allow(trail4).to receive(:float_length) { 2.9 }
       trail5 = double('trail')
-      allow(trail1).to receive(:length) do
-        '11.0 miles'
-      end
+      allow(trail5).to receive(:float_length) { 11.0 }
       trail6 = double('trail')
-      allow(trail1).to receive(:length) do
-        '3.0 miles'
-      end
+      allow(trail6).to receive(:float_length) { 3.0 }
 
       park1.add_trail(trail1)
       park1.add_trail(trail2)
@@ -65,8 +53,36 @@ RSpec.describe 'Park' do
       park2.add_trail(trail5)
       park2.add_trail(trail6)
 
-      expect(park1.trails_shorter_than(2.5)).to eq([trail1, trial2])
+      expect(park1.trails_shorter_than(2.5)).to eq([trail1, trail2])
       expect(park2.trails_shorter_than(2.5)).to eq([])
+    end
+  end
+  describe '#hikeable_miles' do
+    it 'returns the sum of all trail miles' do
+      park1 = Park.new('Capitol Reef')
+      park2 = Park.new('Bryce Canyon')
+      trail1 = double('trail')
+      allow(trail1).to receive(:float_length) { 2.2 }
+      trail2 = double('trail')
+      allow(trail2).to receive(:float_length) { 1.7 }
+      trail3 = double('trail')
+      allow(trail3).to receive(:float_length) { 3.0 }
+      trail4 = double('trail')
+      allow(trail4).to receive(:float_length) { 2.9 }
+      trail5 = double('trail')
+      allow(trail5).to receive(:float_length) { 11.0 }
+      trail6 = double('trail')
+      allow(trail6).to receive(:float_length) { 3.0 }
+
+      park1.add_trail(trail1)
+      park1.add_trail(trail2)
+      park1.add_trail(trail3)
+      park2.add_trail(trail4)
+      park2.add_trail(trail5)
+      park2.add_trail(trail6)
+
+      expect(park1.hikeable_miles).to eq(7.5)
+      expect(park2.hikeable_miles).to eq(16.9)
     end
   end
 end
